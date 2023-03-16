@@ -1,0 +1,10 @@
+.eslintrc
+.history
+.husky
+.vscode
+.lintstagedrc
+node_modules
+dist
+build
+jest.config.js
+vitest.config.ts

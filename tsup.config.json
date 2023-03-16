@@ -1,0 +1,11 @@
+{
+  "entry": ["src/index.ts"],
+  "splitting": true,
+  "sourcemap": false,
+  "clean": true,
+  "minify": false,
+  "format": ["esm"],
+  "treeshake": true,
+  "platform": "node",
+  "bundle": true
+}
