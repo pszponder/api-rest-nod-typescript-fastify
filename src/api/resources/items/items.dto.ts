@@ -12,8 +12,8 @@ export class ItemsDto {
 
   constructor(items: ItemWithId[]) {
     // Map through the items array input and create a new ItemDto
-    this.items = items.map(item => {
-      return new ItemDto(item.id, item.name, item.quality, item.value);
-    });
+    this.items = items.map(
+      item => new ItemDto(item.id, item.name, item.quality, item.value),
+    );
   }
 }
