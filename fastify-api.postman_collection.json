@@ -1,0 +1,274 @@
+{
+  "info": {
+    "_postman_id": "367d6717-608a-4d6b-b85e-7e70bf124028",
+    "name": "Fastify API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http",
+      "item": [
+        {
+          "name": "Add New Item",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"mithril sword\",\n    \"quality\": \"rare\",\n    \"value\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}",
+              "protocol": "http",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}",
+              "protocol": "http",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Item by Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}/:id",
+              "protocol": "http",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Item by Id",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Poseidon's Fork\",\n    \"quality\": \"common\",\n    \"value\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}/:id",
+              "protocol": "http",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Item by Id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}/:id",
+              "protocol": "http",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "https",
+      "item": [
+        {
+          "name": "Add New Item",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"mithril sword\",\n    \"quality\": \"rare\",\n    \"value\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}",
+              "protocol": "https",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}",
+              "protocol": "https",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Item by Id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}/:id",
+              "protocol": "https",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Item by Id",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Poseidon's Fork\",\n    \"quality\": \"common\",\n    \"value\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}/:id",
+              "protocol": "https",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Item by Id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://{{API_HOST_NAME}}:{{API_PORT}}/{{BASE_URL_ITEMS}}/:id",
+              "protocol": "https",
+              "host": ["{{API_HOST_NAME}}"],
+              "port": "{{API_PORT}}",
+              "path": ["{{BASE_URL_ITEMS}}", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "API_PORT",
+      "value": "4000",
+      "type": "default"
+    },
+    {
+      "key": "API_HOST_NAME",
+      "value": "0.0.0.0",
+      "type": "default"
+    },
+    {
+      "key": "BASE_URL_ITEMS",
+      "value": "api/v1/items",
+      "type": "default"
+    }
+  ]
+}
