@@ -64,7 +64,6 @@ export class ItemsData {
    * @returns Promise with items array
    */
   readAllItemsAsync = () => {
-    console.log(this.#items);
     return new Promise<ItemWithId[]>((resolve, reject) => {
       if (this.#items.length > 0) {
         resolve(this.#items);
@@ -81,7 +80,6 @@ export class ItemsData {
    * @returns item with specified id
    */
   readItemByIdAsync = (id: string) => {
-    console.log(this.#items);
     return new Promise<ItemWithId>((resolve, reject) => {
       const item = this.#items.find(itm => itm.id === id);
       if (item) {
