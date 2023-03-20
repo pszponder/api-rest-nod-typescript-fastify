@@ -62,7 +62,7 @@ openssl req -new -key key.pem -out csr.pem
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
 ```
 
-## Project Structure & Overview
+## Project Structure
 
 ### `utils`
 
@@ -107,6 +107,163 @@ The `api/resources/items` directory contains all files related to the items reso
   - In the future, `items.data.ts` will connect to a database and send CRUD operations to the database
 - `items.types.ts`
   - This module contains the TypeScript types used by the different files in the `items` directory
+
+## SwaggerUI / OpenAPI
+
+When the server is running, you can access SwaggerUI / OpenAPI via the following url:
+
+- `https://<api_host>:<api_port>/documentation`
+- This will expose all RESTful API Endpoints
+
+## Postman API Collection
+
+The repository contains a postman collection which can be imported to view all RESTful endpoints
+
+The collection contains two folders:
+
+- http
+- https
+- Depending on how the Fastify API is configured in `api/buildServer.ts` (whether `https` and `https2`) is setup, you can either make HTTP or HTTPS calls but not both
+
+## Endpoints
+
+All endpoints have a base url of: `https://<api_host>:<api_port>/api/v1`
+
+### Items
+
+`POST /items`
+
+- Add a new Item
+- Request body contains a JSON object with the following parameters:
+  - `name` -- Updated name
+  - `quality` -- `common` || `uncommon` || `rare` || `legendary`
+  - `value` -- positive number (>= 0)
+- Response contains a JSON object representing the newly created DB items object
+
+Example Request Body
+
+```json
+{
+  "name": "mithril sword",
+  "quality": "rare",
+  "value": 100
+}
+```
+
+Example Response Body (201)
+
+```json
+{
+  "id": "9ec6944f-fb19-4ad8-8f2c-e7675d82a591",
+  "name": "mithril sword",
+  "quality": "rare",
+  "value": 100
+}
+```
+
+`GET /items`
+
+- Retrieve a list of all items in the DB
+- Response body contains an object with an items property which itself is an array of items objects
+
+Example Response Body (200)
+
+```json
+{
+  "items": [
+    {
+      "id": "615a0e18-415c-41ba-9c51-3b403deec651",
+      "name": "bronze sword",
+      "quality": "common",
+      "value": 10
+    },
+    {
+      "id": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79",
+      "name": "Poseidon's Trident",
+      "quality": "legendary",
+      "value": 1000
+    },
+    {
+      "id": "eb425a54-9966-4b70-a64b-8020e3ce5995",
+      "name": "greater health potion",
+      "quality": "uncommon",
+      "value": 100
+    },
+    {
+      "id": "9ec6944f-fb19-4ad8-8f2c-e7675d82a591",
+      "name": "mithril sword",
+      "quality": "rare",
+      "value": 100
+    }
+  ]
+}
+```
+
+`GET /items/:id`
+
+- Retrieve an item from the database based on the id
+- Pass in an id as a path variable
+- Response body contains JSON object representing the found item
+
+Example Response Body (200) for a request with id of `bebaf5f9-2cbe-4c84-a472-4bd11dadec79`
+
+```json
+{
+  "id": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79",
+  "name": "Poseidon's Trident",
+  "quality": "legendary",
+  "value": 1000
+}
+```
+
+`PUT /items/:id`
+
+- Update an item based on request id and body parameters
+- Pass in an id as a path variable
+- Pass in a JSON object into the body containing one or more of the following properties
+  - `name` -- Updated name
+  - `quality` -- `common` || `uncommon` || `rare` || `legendary`
+  - `value` -- positive number (>= 0)
+  - These properties will be used to update the item with specified id
+- Response body contains JSON object representing the updated item
+
+Example Request Body (for item id of `bebaf5f9-2cbe-4c84-a472-4bd11dadec79`)
+
+```json
+{
+  "name": "Poseidon's Fork",
+  "quality": "common",
+  "value": 0
+}
+```
+
+Example Response Body (200)
+
+```json
+{
+  "id": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79",
+  "name": "Poseidon's Fork",
+  "quality": "common",
+  "value": 0
+}
+```
+
+`DELETE /items/:id`
+
+- Delete item in DB with specified id
+- Request contains id passed into as a path variable
+- Response body contains JSON object representing deleted item of specified id
+
+Example Response Body for id of `bebaf5f9-2cbe-4c84-a472-4bd11dadec79`
+
+```json
+{
+  "id": "bebaf5f9-2cbe-4c84-a472-4bd11dadec79",
+  "name": "Poseidon's Fork",
+  "quality": "common",
+  "value": 0
+}
+```
 
 ## Scripts:
 
