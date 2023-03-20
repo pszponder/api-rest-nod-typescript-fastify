@@ -35,7 +35,7 @@ const configLogger = {
  * Instantiates and returns a configured Fastify server instance
  * @returns Fastify Server Instance
  */
-export async function createServer() {
+export async function buildServer() {
   // Instantiate Fastify Server and configure logging
   const server = fastify({
     http2: true,

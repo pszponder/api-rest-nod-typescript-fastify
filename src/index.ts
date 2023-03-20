@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import http2 from "node:http2";
-import { createServer } from "./api/buildServer.js";
+import { buildServer } from "./api/buildServer.js";
 import { envVars as env } from "./utils/parseEnvVars.js";
 
 /**
@@ -18,5 +18,5 @@ async function startServer(server: FastifyInstance<http2.Http2SecureServer>) {
   }
 }
 
-const server = await createServer();
+const server = await buildServer();
 await startServer(server);
