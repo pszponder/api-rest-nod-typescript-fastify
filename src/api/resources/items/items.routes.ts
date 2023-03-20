@@ -25,6 +25,18 @@ const Item = {
   },
 };
 
+const Items = {
+  type: "object",
+  properties: {
+    items: {
+      type: "array",
+      properties: {
+        item: Item,
+      },
+    },
+  },
+};
+
 const addItemOpts = {
   schema: {
     description: "Add new Item",
@@ -48,10 +60,11 @@ const getAllItemsOpts = {
   schema: {
     description: "Get all items",
     response: {
-      200: {
-        type: "array",
-        items: Item,
-      },
+      // 200: {
+      //   type: "array",
+      //   items: Item,
+      // },
+      200: Items,
     },
   },
   handler: itemsController.getAllItemsAsync,

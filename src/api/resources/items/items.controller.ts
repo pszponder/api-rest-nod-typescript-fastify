@@ -4,6 +4,8 @@
  */
 
 import { FastifyReply, FastifyRequest } from "fastify";
+import { ItemDto } from "./item.dto.js";
+import { ItemsDto } from "./items.dto.js";
 import { ItemsService } from "./items.service.js";
 import { Item, ItemQuality } from "./items.types.js";
 
@@ -26,7 +28,16 @@ export class ItemsController {
       quality,
       value,
     );
-    reply.code(201).send(addedItem);
+
+    // Create a DTO to return to the client
+    const itemDto = new ItemDto(
+      addedItem.id,
+      addedItem.name,
+      addedItem.quality,
+      addedItem.value,
+    );
+
+    reply.code(201).send(itemDto);
   };
 
   /**
@@ -36,7 +47,11 @@ export class ItemsController {
    */
   getAllItemsAsync = async (req: FastifyRequest, reply: FastifyReply) => {
     const items = await this.itemsService.getAllItemsAsync();
-    reply.code(200).send(items);
+
+    // Create a DTO to return to the client
+    const itemsDto = new ItemsDto(items);
+
+    reply.code(200).send(itemsDto);
   };
 
   /**
@@ -49,8 +64,17 @@ export class ItemsController {
     reply: FastifyReply,
   ) => {
     const { id } = req.params;
-    const item = await this.itemsService.getItemByIdAsync(id);
-    reply.code(200).send(item);
+    const foundItem = await this.itemsService.getItemByIdAsync(id);
+
+    // Create a DTO to return to the client
+    const itemDto = new ItemDto(
+      foundItem.id,
+      foundItem.name,
+      foundItem.quality,
+      foundItem.value,
+    );
+
+    reply.code(200).send(itemDto);
   };
 
   /**
@@ -74,7 +98,16 @@ export class ItemsController {
       quality,
       value,
     );
-    reply.code(200).send(updatedItem);
+
+    // Create a DTO to return to the client
+    const itemDto = new ItemDto(
+      updatedItem.id,
+      updatedItem.name,
+      updatedItem.quality,
+      updatedItem.value,
+    );
+
+    reply.code(200).send(itemDto);
   };
 
   /**
@@ -88,6 +121,15 @@ export class ItemsController {
   ) => {
     const { id } = req.params;
     const deletedItem = await this.itemsService.deleteItemByIdAsync(id);
-    reply.code(200).send(deletedItem);
+
+    // Create a DTO to return to the client
+    const itemDto = new ItemDto(
+      deletedItem.id,
+      deletedItem.name,
+      deletedItem.quality,
+      deletedItem.value,
+    );
+
+    reply.code(200).send(itemDto);
   };
 }

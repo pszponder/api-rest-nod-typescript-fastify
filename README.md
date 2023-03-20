@@ -96,6 +96,7 @@ The `api/resources/items` directory contains all files related to the items reso
   - The controller layer is responsible for handling incoming HTTP requests and returning HTTP responses
   - This particular controller contains all route handlers for the items resource
   - Any business logic is passed to the service layer
+  - The controller uses `DTO`s (Data Transfer Objects) to sanitize the data before it is sent to the client. This ensures that only data that the client should receive is sent
 - `items.service.ts`
   - The service layer contains all of the business logic and handle all processing for API requests
   - The service interacts with a database (via a Data Access Layer), cache, and other external services if necessary
