@@ -138,3 +138,6 @@ todos.md
 
 # Scratch Folder (for creating tests)
 src/_scratch/
+
+# certs for HTTPS
+certs/
