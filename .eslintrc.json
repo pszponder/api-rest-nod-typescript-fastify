@@ -27,7 +27,8 @@
     "@typescript-eslint/naming-convention": [
       "off",
       { "leadingUnderscore": "allowSingleOrDouble" }
-    ]
+    ],
+    "no-underscore-dangle": 0
   },
   "env": {
     "browser": true,

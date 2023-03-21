@@ -76,9 +76,12 @@ This file is the entry point of the whole project.
 
 Since this is an API project, the `index.ts` file is responsible for instantiating a new fastify server instance (via the `buildServer.ts` file) and starting the server listening on the host and port specified by the .env file
 
-### `api/buildServer.ts`
+### `api/server.ts`
 
-The `buildServer.ts` module exports a method which instantiates and configures a Fastify Server
+The `server.ts` module contains two exported methods
+
+- `buildServerAsync` -- Instantiates and configures a fastify server instance
+- `startServerAsync` -- Takes the instantiated server instance from `buildServerAsync` and starts the server listening for requests
 
 ### `api/resources`
 

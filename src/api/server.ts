@@ -1,7 +1,8 @@
 import Swagger from "@fastify/swagger";
 import SwaggerUI from "@fastify/swagger-ui";
-import fastify from "fastify";
+import fastify, { FastifyInstance } from "fastify";
 import { readFile } from "node:fs/promises";
+import http2 from "node:http2";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { envVars as env } from "../utils/parseEnvVars.js";
@@ -35,7 +36,7 @@ const configLogger = {
  * Instantiates and returns a configured Fastify server instance
  * @returns Fastify Server Instance
  */
-export async function buildServer() {
+export async function buildServerAsync() {
   // Instantiate Fastify Server and configure logging
   const server = fastify({
     http2: true,
@@ -62,4 +63,21 @@ export async function buildServer() {
 
   // Return configured server instance
   return server;
+}
+
+/**
+ * Asynchronously start the server
+ */
+export async function startServerAsync(
+  server: FastifyInstance<http2.Http2SecureServer>,
+) {
+  try {
+    await server.listen({
+      port: parseInt(env.API_PORT, 10),
+      host: env.API_HOST,
+    });
+  } catch (err) {
+    server.log.error(err);
+    process.exit(1);
+  }
 }
