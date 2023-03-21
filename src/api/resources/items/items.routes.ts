@@ -60,10 +60,6 @@ const getAllItemsOpts = {
   schema: {
     description: "Get all items",
     response: {
-      // 200: {
-      //   type: "array",
-      //   items: Item,
-      // },
       200: Items,
     },
   },
