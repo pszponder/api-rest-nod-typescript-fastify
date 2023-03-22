@@ -9,15 +9,15 @@ import { randomUUID } from "node:crypto";
 import { Item, ItemQuality, ItemWithId } from "./items.types.js";
 
 /**
- * The ItemsData represents a class which directly
+ * The ItemsDao (Data Access Object) represents a class which directly
  * interfaces w/ the DB and performs CRUD operations on it
- * This is the Data Access Layer
+ * This is the Data Access Object implementation of the Data Access Layer
  *
  * Since we aren't actually connecting to a DB in this module,
  * the DB and the CRUD methods use an array to simulate the
  * DB data and CRUD operations
  */
-export class ItemsData {
+export class ItemsDao {
   // Represents simulated DB data (initial state)
   #items: ItemWithId[] = [
     {

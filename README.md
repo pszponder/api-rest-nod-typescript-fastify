@@ -103,11 +103,12 @@ The `api/resources/items` directory contains all files related to the items reso
 - `items.service.ts`
   - The service layer contains all of the business logic and handle all processing for API requests
   - The service interacts with a database (via a Data Access Layer), cache, and other external services if necessary
-- `items.data.ts`
+- `items.dao.ts`
   - This module serves as the Data Access Layer for the items resource
+  - The `DAO` (`Data Access Object`) is an implementation of the Data Access Layer
   - The Data Access Layer is responsible for interacting with the database and other data resources
-  - Currently, `items.data.ts` contains an in-memory database
-  - In the future, `items.data.ts` will connect to a database and send CRUD operations to the database
+  - Currently, `items.dao.ts` contains an in-memory database
+  - In the future, `items.dao.ts` will connect to a database and send CRUD operations to the database
 - `items.types.ts`
   - This module contains the TypeScript types used by the different files in the `items` directory
 
