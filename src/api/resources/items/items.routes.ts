@@ -5,12 +5,14 @@
 
 import { FastifyInstance } from "fastify";
 import { ItemsController } from "./items.controller.js";
-import { ItemsDao } from "./items.dao.js";
+import { ItemsRepositoryInMem } from "./items.repository.inmem.js";
 import { ItemsService } from "./items.service.js";
 import { QUALITY } from "./items.types.js";
 
 // Instantiate the ItemsController
-const itemsController = new ItemsController(new ItemsService(new ItemsDao()));
+const itemsController = new ItemsController(
+  new ItemsService(new ItemsRepositoryInMem()),
+);
 
 // ========================================
 // Define Schema Objects to Validate Routes

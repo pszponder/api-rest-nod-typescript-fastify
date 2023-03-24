@@ -3,7 +3,7 @@
  * from the communication layer (controller)
  */
 
-import { ItemsDao } from "./items.dao.js";
+import { IItemsRepository } from "./IItemsRepository.js";
 import { Item, ItemQuality } from "./items.types.js";
 
 /**
@@ -11,11 +11,11 @@ import { Item, ItemQuality } from "./items.types.js";
  * Items resource
  */
 export class ItemsService {
-  // Use Dependency Injection to accept an instance of the
-  //  ItemsDao (Data Access Object)
-  constructor(private itemsDao: ItemsDao) {}
+  // Use Dependency Injection to accept an instance of a class
+  //  which implements the IItemsRepository Interface
+  constructor(private itemsRepository: IItemsRepository) {}
 
-  /**
+  /*
    * Add a new item to the DB
    * @param name The name of the new item to create
    * @param quality The new item quality
@@ -30,7 +30,7 @@ export class ItemsService {
       value,
     };
 
-    const dbItem = await this.itemsDao.saveItemAsync(newItem);
+    const dbItem = await this.itemsRepository.saveItemAsync(newItem);
     return dbItem;
   };
 
@@ -39,7 +39,7 @@ export class ItemsService {
    * @returns All items from the db
    */
   getAllItemsAsync = async () => {
-    const dbItems = await this.itemsDao.readAllItemsAsync();
+    const dbItems = await this.itemsRepository.readAllItemsAsync();
     return dbItems;
   };
 
@@ -49,7 +49,7 @@ export class ItemsService {
    * @returns The found item in the DB
    */
   getItemByIdAsync = async (id: string) => {
-    const foundItem = await this.itemsDao.readItemByIdAsync(id);
+    const foundItem = await this.itemsRepository.readItemByIdAsync(id);
     return foundItem;
   };
 
@@ -67,7 +67,7 @@ export class ItemsService {
     quality?: ItemQuality,
     value?: number,
   ) => {
-    const updatedItem = await this.itemsDao.updateItemByIdAsync(
+    const updatedItem = await this.itemsRepository.updateItemByIdAsync(
       id,
       name,
       quality,
@@ -83,7 +83,7 @@ export class ItemsService {
    * @returns Deleted Item from the DB
    */
   deleteItemByIdAsync = async (id: string) => {
-    const deletedItem = await this.itemsDao.deleteItemByIdAsync(id);
+    const deletedItem = await this.itemsRepository.deleteItemByIdAsync(id);
     return deletedItem;
   };
 }

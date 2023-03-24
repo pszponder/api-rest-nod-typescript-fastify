@@ -103,12 +103,20 @@ The `api/resources/items` directory contains all files related to the items reso
 - `items.service.ts`
   - The service layer contains all of the business logic and handle all processing for API requests
   - The service interacts with a database (via a Data Access Layer), cache, and other external services if necessary
-- `items.dao.ts`
-  - This module serves as the Data Access Layer for the items resource
-  - The `DAO` (`Data Access Object`) is an implementation of the Data Access Layer
+- `IItemsRepository.ts`
+  - In conjunction with `items.repository.inmem.ts`, forms the Data Access Layer for the items resource
+  - This is the interface which is used in conjunction with an implementing class to define a Repository
+  - The `Repository Design Pattern` creates a class which implements methods which interact directly with a database to perform CRUD operations on a DB
+  - `items.repository.inmem.ts` exports the `ItemsRepositoryInMem` class which contains an in-memory array representing a database
+  - We can also create additional classes which implement the same `IItemsRepository` interface to interact with different databases
+    - ex. `ItemsRepositoryMongo` and `ItemsRepositoryPostgres` both implement from `IItemsRepository`, this means they have to use the same methods defined by the interface.
+    - The actual implementation of the methods of the two classes will vary as one class communicates with a MongoDB database while the other communicates with a PostgreSQL database.
+    - In `items.routes.ts` where we instantiate the controller / service and repository, we can use `Dependency Injection` to inject any class into the `ItemsService` class which implements the `IItemsRepository` interface.
+- `items.repository.inmem.ts`
+  - In conjunction with `IItemsRepository.ts`, forms the Data Access Layer for the items resource
   - The Data Access Layer is responsible for interacting with the database and other data resources
-  - Currently, `items.dao.ts` contains an in-memory database
-  - In the future, `items.dao.ts` will connect to a database and send CRUD operations to the database
+  - `ItemsRepositoryInMem` is an in-memory database
+  - In the future, can replace `ItemsRepositoryInMem` with a class which also implements `IItemsRepository` but connects to an actual database like MongoDB or PostgreSQL
 - `items.types.ts`
   - This module contains the TypeScript types used by the different files in the `items` directory
 
