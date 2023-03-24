@@ -28,7 +28,9 @@
       "off",
       { "leadingUnderscore": "allowSingleOrDouble" }
     ],
-    "no-underscore-dangle": 0
+    "no-underscore-dangle": 0,
+    "@typescript-eslint/no-unused-vars": 1,
+    "no-await-in-loop": 1
   },
   "env": {
     "browser": true,

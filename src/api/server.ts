@@ -3,14 +3,12 @@ import SwaggerUI from "@fastify/swagger-ui";
 import fastify, { FastifyInstance } from "fastify";
 import { readFile } from "node:fs/promises";
 import http2 from "node:http2";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
+import { getRootDir } from "../utils/getRootDir.js";
 import { envVars as env } from "../utils/parseEnvVars.js";
 import { itemRoutes } from "./resources/items/items.routes.js";
 
-// Get the directory path of this file
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Obtain root directory path
+const rootDir = await getRootDir();
 
 /**
  * Create a configuration object to configure the logger based on the NODE_ENV
@@ -42,8 +40,8 @@ export async function buildServerAsync() {
     http2: true,
     https: {
       allowHTTP1: true, // fallback support for HTTP1
-      key: await readFile(`${__dirname}/../certs/key.pem`),
-      cert: await readFile(`${__dirname}/../certs/cert.pem`),
+      key: await readFile(`${rootDir}/certs/key.pem`),
+      cert: await readFile(`${rootDir}/certs/cert.pem`),
     },
     logger: configLogger[env.NODE_ENV as keyof typeof configLogger] ?? true,
   });
