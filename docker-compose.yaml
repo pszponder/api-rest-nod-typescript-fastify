@@ -8,12 +8,12 @@ version: "3"
 
 services:
   # Define the app service
-  app:
+  api:
     # Set a name for the container
     container_name: fastify-rest-api
 
-    # Build the Docker image from the Dockerfile in the current directory
-    build: .
+    # Build the Docker image from the Dockerfile in the api directory
+    build: ./src/api
 
     # Map the container's port to the host machine's port
     ports:
