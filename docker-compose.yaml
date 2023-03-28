@@ -1,0 +1,25 @@
+# docker compose up -d
+#  -d runs docker compose in detatched mode
+
+# docker compose down -v
+#  -v option removes any created volumes
+
+version: "3"
+
+services:
+  # Define the app service
+  app:
+    # Set a name for the container
+    container_name: fastify-rest-api
+
+    # Build the Docker image from the Dockerfile in the current directory
+    build: .
+
+    # Map the container's port to the host machine's port
+    ports:
+      # Dynamically map the container's port to the host machine's port based on the value of the PORT environment variable
+      - "${API_PORT}:${API_PORT}"
+
+    # Load environment variables from the .env file
+    env_file:
+      - .env

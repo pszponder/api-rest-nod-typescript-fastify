@@ -62,6 +62,16 @@ openssl req -new -key key.pem -out csr.pem
 openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem
 ```
 
+## Starting and Stopping the API as a Docker Container
+
+```bash
+# Start docker container (-d runs docker compose in detatched mode)
+docker compose up -d
+
+# Stop docker container (-v option removes any created volumes)
+docker compose down -v
+```
+
 ## Project Structure
 
 ### `utils`
